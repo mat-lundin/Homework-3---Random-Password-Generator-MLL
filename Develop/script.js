@@ -50,8 +50,9 @@ function randomLower() {
 //random number
 function randomNum() {
   console.log('numfn');
-  var numChar = Math.floor(Math.random()*10);
-  numChar = toString(numChar);
+  var numChar = Math.floor(Math.random()*10).toString();
+  numChar = numChar;
+  console.log(typeof numChar);
   return numChar;
 }
 
@@ -66,7 +67,9 @@ function runFun(name) {
     pwdChar = randomLower();
   } else if (name === 'randomNum') {
     pwdChar = randomNum();
+    console.log('pwdChar in runFun: ' + pwdChar);
   };
+  console.log('pwdChar in runFun: ' + pwdChar);
   return pwdChar;
 }
 
