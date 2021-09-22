@@ -6,19 +6,19 @@
 //function to randomly pick from each array and append it to the pwd using +=
 //place the generated pwd into the html box
 
-var selections = {
-  length: 20,
+var selects = {
+  length: 8,
   upperCase: true,
   lowerCase: true,
   symbols: true,
   numbers: true,
 };
 
-var fnArr = ['randomSymb','randomUpper','randomLower','randomNum']
+var fnArr = ['randomSymb','randomUpper','randomLower','randomNum'];
 
 var symbArr = ['!','@','#','$','%','^','&','*','(',')'];
 
-var pwd = ''
+var pwd = '';
 
 // console.log(String.fromCharCode(Math.floor(Math.random()*26)+65));
 // console.log(String.fromCharCode(Math.floor(Math.random()*26)+97));
@@ -56,7 +56,7 @@ function randomNum() {
   return numChar;
 }
 
-//run function from string
+//run function from function name as string
 function runFun(name) {
   var pwdChar = ''
   if (name === 'randomSymb') {
@@ -67,9 +67,7 @@ function runFun(name) {
     pwdChar = randomLower();
   } else if (name === 'randomNum') {
     pwdChar = randomNum();
-    console.log('pwdChar in runFun: ' + pwdChar);
   };
-  console.log('pwdChar in runFun: ' + pwdChar);
   return pwdChar;
 }
 
@@ -85,8 +83,9 @@ function generatePassword(len,upper,lower,symb,num) {
   }
 }
 
-generatePassword(10,true,true,true,true)
+generatePassword(selects.length,selects.upperCase,selects.lowerCase,selects.symbols,selects.numbers);
 console.log('password = ' + pwd )
+console.log('password length = ' + pwd.length)
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
