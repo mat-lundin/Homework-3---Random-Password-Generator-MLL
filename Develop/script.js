@@ -154,6 +154,18 @@ function generatePassword(len,upper,lower,symb,num) {
       for (var i=0;i < len; i++) {
         pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
       }
+  } else if (!upper && lower && !symb && !num) {
+      var fnMod = [fnArr[1]];
+      console.log(fnMod);
+      for (var i=0;i < len; i++) {
+        pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
+      }
+  } else if (!upper && !lower && symb && !num) {
+      var fnMod = [fnArr[2]];
+      console.log(fnMod);
+      for (var i=0;i < len; i++) {
+        pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
+      }
   } else if (!upper && !lower && !symb && !num) {
       alert('You must select at least one character type.')
       pwd = 'Click Generate Password to try again.'
@@ -180,7 +192,14 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", function(){
   while(selects.length < 8 || selects.length > 128 || isNaN(selects.length)) {
-    selects.length = parseInt(prompt('Please enter a number of characters (8-128) for the password length.'));
+    var len = prompt('Please enter a number of characters (8-128) for the password length.')
+    if (len != null) {
+      selects.length = parseInt(prompt('Please enter a number of characters (8-128) for the password length.'));
+      console.log(selects.length,typeof selects.length)
+    } else {
+      return;
+    }
+    //selects.length = parseInt(prompt('Please enter a number of characters (8-128) for the password length.'));
     console.log(typeof selects.length);
     console.log(selects.length)
   } {
