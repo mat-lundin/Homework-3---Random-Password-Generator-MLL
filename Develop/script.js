@@ -15,7 +15,7 @@ var selects = {
   numbers: true,
 };
 
-var fnArr = ['randomSymb','randomUpper','randomLower','randomNum'];
+var fnArr = ['randomUpper','randomLower','randomSymb','randomNum'];
 
 var symbArr = ['!','@','#','$','%','^','&','*','(',')'];
 
@@ -79,10 +79,82 @@ function runFun(name) {
 function generatePassword(len,upper,lower,symb,num) {
   if (upper && lower && symb && num) {
     for (var i=0;i < len; i++) {
-      pwd += runFun(fnArr[Math.floor(Math.random()*fnArr.length)]) //pass this to a case function, return value from function to case function and back here, append to pwd
+      pwd += runFun(fnArr[Math.floor(Math.random()*fnArr.length)]); //pass this to a case function, return value from function to case function and back here, append to pwd
     }
-  }
-}
+  } else if (!upper && lower && symb && num) {
+    var fnMod = fnArr.slice(1);
+    console.log(fnMod);
+      for (var i=0;i < len; i++) {
+        pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
+      }
+
+  } else if (!upper && !lower && symb && num) {
+      var fnMod = fnArr.slice(2);
+      console.log(fnMod);
+      for (var i=0;i < len; i++) {
+        pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
+      }
+  } else if (!upper && !lower && !symb && num) {
+      var fnMod = fnArr.slice(3);
+      console.log(fnMod);
+      for (var i=0;i < len; i++) {
+        pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
+      }
+  } else if (upper && !lower && !symb && !num) {
+      var fnMod = fnArr.slice(0,1);
+      console.log(fnMod);
+      for (var i=0;i < len; i++) {
+        pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
+      }
+  } else if (upper && lower && !symb && !num) {
+      var fnMod = fnArr.slice(0,2);
+      console.log(fnMod);
+      for (var i=0;i < len; i++) {
+        pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
+      }
+  } else if (upper && lower && symb && !num) {
+      var fnMod = fnArr.slice(0,3);
+      console.log(fnMod);
+      for (var i=0;i < len; i++) {
+        pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
+      }
+  } else if (upper && !lower && symb && num) {
+      var fnMod = [fnArr[0],fnArr[2],fnArr[3]];
+      console.log(fnMod);
+      for (var i=0;i < len; i++) {
+        pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
+      }
+  } else if (upper && lower && !symb && num) {/
+      var fnMod = [fnArr[0],fnArr[1],fnArr[3]];
+      console.log(fnMod);
+      for (var i=0;i < len; i++) {
+        pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
+      }
+  } else if (upper && !lower && !symb && num) {
+      var fnMod = [fnArr[0],fnArr[3]];
+      console.log(fnMod);
+      for (var i=0;i < len; i++) {
+        pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
+      }
+  } else if (!upper && lower && !symb && num) {
+      var fnMod = [fnArr[0],fnArr[1],fnArr[3]];
+      console.log(fnMod);
+      for (var i=0;i < len; i++) {
+        pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
+      }
+  } else if (!upper && lower && symb && !num) {
+      var fnMod = [fnArr[1],fnArr[2]];
+      console.log(fnMod);
+      for (var i=0;i < len; i++) {
+        pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
+      }
+
+  } else if (!upper && !lower && !symb && !num) {
+      alert('You must select at least one character type.')
+      pwd = 'Click Generate Password to try again.'
+      }
+
+  return pwd;} //return 'you must select at least one character type' for all false
 
 //generatePassword(selects.length,selects.upperCase,selects.lowerCase,selects.symbols,selects.numbers);
 
@@ -96,6 +168,7 @@ function writePassword() {
   var password = generatePassword(selects.length,selects.upperCase,selects.lowerCase,selects.symbols,selects.numbers);
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
+  selects.length = 0;
 
 }
 
