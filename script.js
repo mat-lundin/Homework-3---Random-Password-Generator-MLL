@@ -179,7 +179,7 @@ function generatePassword(len,upper,lower,symb,num) {
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
+var copyBtn = document.querySelector("#copy")
 
 // Write password to the #password input
 function writePassword() {
@@ -216,3 +216,12 @@ generateBtn.addEventListener("click", function(){
   }
 
 });
+
+// Add event listener to copy button
+copyBtn.addEventListener('click', function(){
+  var pwd = document.querySelector("#password");
+  Pwd.select();
+  document.execCommand("copy");
+  copyBtn.value = 'Copied!'
+  
+})
