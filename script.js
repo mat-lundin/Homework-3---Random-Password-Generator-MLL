@@ -81,7 +81,7 @@ function generatePassword(len,upper,lower,symb,num) {
   pwd = ''; 
   if (upper && lower && symb && num) {
     for (var i=0;i < len; i++) {
-      pwd += runFun(fnArr[Math.floor(Math.random()*fnArr.length)]); //pass this to a case function, return value from function to case function and back here, append to pwd
+      pwd += runFun(fnArr[Math.floor(Math.random()*fnArr.length)]); 
     }
   } else if (!upper && lower && symb && num) {
     var fnMod = fnArr.slice(1);
@@ -196,10 +196,12 @@ generateBtn.addEventListener("click", function(){
   while(selects.length < 8 || selects.length > 128 || isNaN(selects.length)) {
     console.log(selects.length, typeof selects.length)
     var len = prompt('Please enter a number of characters (8-128) for the password length.')
+    //add a specific alert if user adds non-numbers
     if (len != null) {
       selects.length = parseInt(len)
       console.log(selects.length,typeof selects.length)
-    } else {
+    } 
+    else {
       selects.length = 0;
       return;
     }
