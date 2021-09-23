@@ -77,6 +77,8 @@ function runFun(name) {
 
 //generate
 function generatePassword(len,upper,lower,symb,num) {
+  //reset pwd in case multiple passwords are generated
+  pwd = ''; 
   if (upper && lower && symb && num) {
     for (var i=0;i < len; i++) {
       pwd += runFun(fnArr[Math.floor(Math.random()*fnArr.length)]); //pass this to a case function, return value from function to case function and back here, append to pwd
@@ -170,7 +172,6 @@ function generatePassword(len,upper,lower,symb,num) {
       alert('You must select at least one character type.')
       pwd = 'Click Generate Password to try again.'
       }
-
   return pwd;} //return 'you must select at least one character type' for all false
 
 //generatePassword(selects.length,selects.upperCase,selects.lowerCase,selects.symbols,selects.numbers);
@@ -184,6 +185,7 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword(selects.length,selects.upperCase,selects.lowerCase,selects.symbols,selects.numbers);
   var passwordText = document.querySelector("#password");
+
   passwordText.value = password;
   selects.length = 0;
 
