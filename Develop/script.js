@@ -124,7 +124,7 @@ function generatePassword(len,upper,lower,symb,num) {
       for (var i=0;i < len; i++) {
         pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
       }
-  } else if (upper && lower && !symb && num) {/
+  } else if (upper && lower && !symb && num) {
       var fnMod = [fnArr[0],fnArr[1],fnArr[3]];
       console.log(fnMod);
       for (var i=0;i < len; i++) {
@@ -137,7 +137,7 @@ function generatePassword(len,upper,lower,symb,num) {
         pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
       }
   } else if (!upper && lower && !symb && num) {
-      var fnMod = [fnArr[0],fnArr[1],fnArr[3]];
+      var fnMod = [fnArr[1],fnArr[3]];
       console.log(fnMod);
       for (var i=0;i < len; i++) {
         pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
@@ -148,7 +148,12 @@ function generatePassword(len,upper,lower,symb,num) {
       for (var i=0;i < len; i++) {
         pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
       }
-
+  } else if (upper && !lower && symb && !num) {
+      var fnMod = [fnArr[0],fnArr[2]];
+      console.log(fnMod);
+      for (var i=0;i < len; i++) {
+        pwd += runFun(fnMod[Math.floor(Math.random()*fnMod.length)]);
+      }
   } else if (!upper && !lower && !symb && !num) {
       alert('You must select at least one character type.')
       pwd = 'Click Generate Password to try again.'
@@ -174,8 +179,10 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", function(){
-  while(selects.length < 8 || selects.length > 128) {
-    selects.length = prompt('Please enter between 8 and 128 characters for the password length.');
+  while(selects.length < 8 || selects.length > 128 || isNaN(selects.length)) {
+    selects.length = parseInt(prompt('Please enter a number of characters (8-128) for the password length.'));
+    console.log(typeof selects.length);
+    console.log(selects.length)
   } {
     selects.upperCase = confirm('Include upper case letters? (OK = Yes, Cancel = No)');
     selects.lowerCase = confirm('Include lower case letters? (OK = Yes, Cancel = No)');
