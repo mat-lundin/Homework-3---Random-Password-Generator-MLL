@@ -203,10 +203,8 @@ generateBtn.addEventListener("click", function(){
       selects.length = 0;
       return;
     }
-    //selects.length = parseInt(prompt('Please enter a number of characters (8-128) for the password length.'));
-    console.log(typeof selects.length);
-    console.log(selects.length)
   } {
+    copyBtn.innerText = 'Copy to Clipboard';
     selects.upperCase = confirm('Include upper case letters? (OK = Yes, Cancel = No)');
     selects.lowerCase = confirm('Include lower case letters? (OK = Yes, Cancel = No)');
     selects.symbols = confirm('Include special characters/symbols? (OK = Yes, Cancel = No)');
@@ -220,8 +218,9 @@ generateBtn.addEventListener("click", function(){
 // Add event listener to copy button
 copyBtn.addEventListener('click', function(){
   var pwd = document.querySelector("#password");
-  Pwd.select();
+  pwd.select();
   document.execCommand("copy");
-  copyBtn.value = 'Copied!'
+  copyBtn.innerText = 'Copied!';
+  console.log(copyBtn, copyBtn.value);
   
 })
