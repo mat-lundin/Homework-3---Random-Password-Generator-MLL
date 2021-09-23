@@ -6,8 +6,9 @@
 //function to randomly pick from each array and append it to the pwd using +=
 //place the generated pwd into the html box
 
+//initialize length as 0 for the while loop that controls the prompt
 var selects = {
-  length: 8,
+  length: 0,
   upperCase: true,
   lowerCase: true,
   symbols: true,
@@ -94,7 +95,7 @@ console.log(document.querySelector("#generate"));
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = generatePassword(selects.length,selects.upperCase,selects.lowerCase,selects.symbols,selects.numbers);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
@@ -102,4 +103,18 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", function(){
+  while(selects.length < 8 || selects.length > 128) {
+    selects.length = prompt('Please enter between 8 and 128 characters for the password length.');
+  } {
+    if (selects.length === null);
+    return;
+  }
+  selects.upperCase = confirm('Include upper case letters? (Click cancel for NO)');
+  selects.lowerCase = confirm('Include lower case letters? (Click cancel for NO)');
+  selects.symbols = confirm('Include special characters/symbols? (Click cancel for NO)');
+  selects.numbers = confirm('Include numbers? (Click cancel for NO)');
+  
+
+  writePassword();
+});
