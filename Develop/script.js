@@ -192,11 +192,13 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", function(){
   while(selects.length < 8 || selects.length > 128 || isNaN(selects.length)) {
+    console.log(selects.length, typeof selects.length)
     var len = prompt('Please enter a number of characters (8-128) for the password length.')
     if (len != null) {
-      selects.length = parseInt(prompt('Please enter a number of characters (8-128) for the password length.'));
+      selects.length = parseInt(len)
       console.log(selects.length,typeof selects.length)
     } else {
+      selects.length = 0;
       return;
     }
     //selects.length = parseInt(prompt('Please enter a number of characters (8-128) for the password length.'));
