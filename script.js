@@ -1,11 +1,3 @@
-//button clicked open popup(s)
-//save values of popup(s) -object
-//length between 8-128 characters, at least one must be true
-//use confirm for true/false, change "cancel" to "no"
-//character arrays
-//function to randomly pick from each array and append it to the pwd using +=
-//place the generated pwd into the html box
-
 //initialize length as 0 for the while loop that controls the prompt
 var selects = {
   length: 0,
@@ -20,11 +12,6 @@ var fnArr = ['randomUpper','randomLower','randomSymb','randomNum'];
 var symbArr = ['!','@','#','$','%','^','&','*','(',')'];
 
 var pwd = '';
-
-// console.log(String.fromCharCode(Math.floor(Math.random()*26)+65));
-// console.log(String.fromCharCode(Math.floor(Math.random()*26)+97));
-// console.log(symbArr[Math.floor(Math.random()*symbArr.length)]);
-// console.log(Math.floor(Math.random()*10));
 
 
 //random symbol
@@ -72,10 +59,9 @@ function runFun(name) {
   return pwdChar;
 }
 
-// fnArr[Math.floor(Math.random()*fnArr.length)]
-// console.log(fnArr[Math.floor(Math.random()*fnArr.length)])
 
-//generate
+
+//generate password based on criteria entered
 function generatePassword(len,upper,lower,symb,num) {
   //reset pwd in case multiple passwords are generated
   pwd = ''; 
@@ -172,9 +158,7 @@ function generatePassword(len,upper,lower,symb,num) {
       alert('You must select at least one character type.')
       pwd = 'Click Generate Password to try again.'
       }
-  return pwd;} //return 'you must select at least one character type' for all false
-
-//generatePassword(selects.length,selects.upperCase,selects.lowerCase,selects.symbols,selects.numbers);
+  return pwd;};
 
 
 // Assignment Code
@@ -189,17 +173,15 @@ function writePassword() {
   passwordText.value = password;
   selects.length = 0;
 
-}
+};
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", function(){
   while(selects.length < 8 || selects.length > 128 || isNaN(selects.length)) {
-    console.log(selects.length, typeof selects.length)
     var len = prompt('Please enter a number of characters (8-128) for the password length.')
     //add a specific alert if user adds non-numbers
     if (len != null) {
       selects.length = parseInt(len)
-      console.log(selects.length,typeof selects.length)
       if (isNaN(selects.length)){
       alert('Only numbers please!');
       };
@@ -214,7 +196,6 @@ generateBtn.addEventListener("click", function(){
     selects.lowerCase = confirm('Include lower case letters? (OK = Yes, Cancel = No)');
     selects.symbols = confirm('Include special characters/symbols? (OK = Yes, Cancel = No)');
     selects.numbers = confirm('Include numbers? (OK = Yes, Cancel = No)');
-    console.log(selects);
     writePassword();
   }
 
@@ -228,4 +209,4 @@ copyBtn.addEventListener('click', function(){
   copyBtn.innerText = 'Copied!';
   console.log(copyBtn, copyBtn.value);
   
-})
+});
