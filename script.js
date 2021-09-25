@@ -200,6 +200,9 @@ generateBtn.addEventListener("click", function(){
     if (len != null) {
       selects.length = parseInt(len)
       console.log(selects.length,typeof selects.length)
+      if (isNaN(selects.length)){
+      alert('Only numbers please!');
+      };
     } 
     else {
       selects.length = 0;
