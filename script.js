@@ -53,6 +53,7 @@ function passGen() {
         alert('Please select at least one type of character');
         return;
     } else {
+        copyBtn.innerHTML = 'Copy to Clipboard';
         while (passArr.length < length) {
             const fnId = Math.floor(Math.random() * 3);
             // if that type of char is not selected don't add anything, keep looping
@@ -96,6 +97,7 @@ lengthInp.addEventListener('change', () => {
 
 // event listeners on generate and copy buttons
 genBtn.addEventListener('click', () => {
+    
     passGen();
 
 });
@@ -107,7 +109,7 @@ copyBtn.addEventListener('click', () => {
     var data = [new ClipboardItem({ "text/plain": new Blob([password], { type: "text/plain" }) })];
     navigator.clipboard.write(data).then(function() {
       console.log("Copied to clipboard successfully!");
-      alert('copied to clipboard!');
+      copyBtn.innerHTML = 'Copied!'
     }, function() {
       console.error("Unable to write to clipboard. :-(");
     });
