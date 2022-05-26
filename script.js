@@ -38,10 +38,9 @@ function randomLower() {
     return String.fromCharCode(charCode);
 }
 
-// for now, symbols are 1-64
-// TODO: remove white space chars or just use a built in array of chars
+// symbols are 33-64 (includes numbers)
 function randomSymb() {
-    const charCode = Math.floor(Math.random() * 64);
+    const charCode = Math.floor(Math.random() * 32 + 33)
     return String.fromCharCode(charCode);
 }
 
@@ -56,7 +55,7 @@ function passGen() {
     } else {
         while (passArr.length < length) {
             const fnId = Math.floor(Math.random() * 3);
-            // console.log(passArr.length)
+            // if that type of char is not selected don't add anything, keep looping
             if (charGen[fnId].select) {
                 // console.log(true)
                 passArr.push(charGen[fnId].fn())
@@ -102,5 +101,14 @@ genBtn.addEventListener('click', () => {
 });
 
 copyBtn.addEventListener('click', () => {
-    console.log(charGen[0].select)
+    const password = passDisp.innerHTML;
+
+    // credit to https://www.w3.org/TR/clipboard-apis/#async-clipboard-api for this clipboard code
+    var data = [new ClipboardItem({ "text/plain": new Blob([password], { type: "text/plain" }) })];
+    navigator.clipboard.write(data).then(function() {
+      console.log("Copied to clipboard successfully!");
+      alert('copied to clipboard!');
+    }, function() {
+      console.error("Unable to write to clipboard. :-(");
+    });
 });
